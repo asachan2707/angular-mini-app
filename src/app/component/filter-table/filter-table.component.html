@@ -1,0 +1,12 @@
+<h2>Filter Table</h2>
+
+<div class="action-container">
+  <app-actions [isActive]="isActionActive" (query)="takeAction($event)"></app-actions>
+  <span class="ft-right">
+    <app-filter (query)="setQueryRequest($event)"></app-filter>
+  </span>
+</div>
+<div>
+  <app-table [data]="responseData" [pageSize]="pageSize" (selected)="getSelectedItemList($event)" (query)="getResponseReq($event)">
+  </app-table>
+</div>

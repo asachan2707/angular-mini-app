@@ -1,0 +1,13 @@
+<span>
+  <input name="country" [(ngModel)]="country_search" placeholder="Search by Country" />
+</span>
+
+<!-- <input name="id" [(ngModel)]="id_search" placeholder="Search by ID" /> -->
+<span>
+  <input name="item_per_page" [(ngModel)]="item_per_page" placeholder="Page Size" />
+</span>
+
+<span>
+  <button class="btn btn-default" [disabled]="!(item_per_page || country_search)" type="submit" (click)="searchCountry()">Search</button>
+  <button class="btn btn-default" type="reset" (click)="reset()">Reset</button>
+</span>

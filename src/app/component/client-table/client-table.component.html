@@ -1,0 +1,7 @@
+<h2>Client Table</h2>
+
+<app-table 
+    [data]="responseData"
+    (selected)="getSelectedItemList($event)"
+    (query)="getResponseReq($event)">
+</app-table>

@@ -1,0 +1,51 @@
+<clr-datagrid
+  [clrDgSelected]="selectedGridItems"
+  (clrDgSelectedChange)="selectedItemsChanged($event)" [clrDgRowSelection]="true"
+  (clrDgRefresh)="refresh($event)" [clrDgLoading]="loading">
+
+  <!-- Datagrid columns section start -->
+  <ng-container *ngFor="let column of gridHeaderData">
+    <clr-dg-column [clrDgField]="column.name">
+      <ng-container *clrDgHideableColumn>
+        {{ column.display_name }}
+      </ng-container>
+    </clr-dg-column>
+  </ng-container>
+  <!-- Datagrid columns section end -->
+
+  <!-- Placeholder (text when no rows available) section start -->
+  <clr-dg-placeholder>
+    <ng-content select="No rows found."></ng-content>
+  </clr-dg-placeholder>
+  <!-- Placeholder section end -->
+
+  <!-- Datagrid row data section start -->
+  <ng-container>
+    <clr-dg-row *ngFor="let data of datagridData"
+      [class.disabled]="false" disabled [clrDgItem]="data"
+      [(clrDgSelected)]="data.selected">
+
+      <ng-container *ngFor="let key of columnNames || []; let i = index">
+        <!-- cell for normal string data -->
+        <clr-dg-cell>
+          <div title={{data[key]}}>{{ data[key] }}</div>
+        </clr-dg-cell>
+      </ng-container>
+    </clr-dg-row>
+  </ng-container>
+  <!-- Datagrid row data section end -->
+
+  <!-- Datagrid footer section start -->
+  <clr-dg-footer>
+    <clr-dg-column-toggle>
+      <clr-dg-column-toggle-title>Columns</clr-dg-column-toggle-title>
+      <clr-dg-column-toggle-button>Select All</clr-dg-column-toggle-button>
+    </clr-dg-column-toggle>
+
+    <clr-dg-pagination #pagination
+      [clrDgPageSize]="pageSize" [clrDgTotalItems]="total" [(clrDgPage)]="currentpage">
+      {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{pagination.totalItems}} rows
+    </clr-dg-pagination>
+  </clr-dg-footer>
+  <!-- Datagrid footer section end -->
+</clr-datagrid>

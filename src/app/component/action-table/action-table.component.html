@@ -1,0 +1,8 @@
+<h2>Action Table</h2>
+<app-actions [isActive]="isActionActive" (query)="takeAction($event)"></app-actions>
+
+<app-table 
+    [data]="responseData"
+    (selected)="getSelectedItemList($event)"
+    (query)="getResponseReq($event)">
+</app-table>
